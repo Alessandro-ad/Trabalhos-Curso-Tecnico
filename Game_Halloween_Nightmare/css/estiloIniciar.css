@@ -1,0 +1,46 @@
+body{
+	background-image: url(../images/fundo.png);
+	background-size:  100%;
+	background-repeat: no-repeat;
+	background-color: rgb(0,0,0);
+}
+section{
+	text-align: center;
+}
+
+#logoPrincipal{
+	margin-top: 10%;
+	text-align: center;
+}
+
+#menu{
+	padding-top: 300px;
+	
+	width: 200px;
+	height: 300px;
+}
+
+#botaoStart{
+	position: relative;
+	left: 55px;
+	top: -230px;
+	
+}
+
+#botaoOptions{
+	position: relative;
+	left: -45px;
+	top: -190px;
+	
+}
+
+#lapide{
+	position: relative;
+	left: 0;
+	top: 0;
+	
+}
+
+
+#a{background-color: red;}
+

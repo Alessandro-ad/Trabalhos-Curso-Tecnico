@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<link rel="stylesheet" href="css/estiloGameOver.css" type="text/css">
+		<title>Halloween Nightmare</title>
+		<meta charset="utf-8">
+		<meta name="author" content="alessandroDrese, ivana, paulo, diogo">
+		<meta name="description" content="Trabalho Game Computacao Grafica">
+		
+		<script language="JavaScript">  
+		function voltar(p)  
+		{  
+		var str = new Array();  
+		loc = window.location.search.substr(1).split('&');  
+		for (i in loc)  
+		{  
+		var q = loc[i].split('=');  
+		str[q[0]] = q[1];  
+		}  
+		
+		
+		var newLocation = window.location.href.split('/');
+		newLocation.pop();
+						
+		var newLink = 'fase.html?id=' + str[p];
+		
+		newLocation.push(newLink);
+		window.location = newLocation.join('/');
+		}  
+		</script>  
+	</head>
+	<body>
+		
+		<section>
+			
+			<img src="images/tryAgain.png" id="tryAgain" onclick='voltar("id")'>
+			<br>
+			<a href="options.html"><img src="images/botao_options.png" id="botaoOptions"></a>
+			
+		</section>
+	</body>
+</html>

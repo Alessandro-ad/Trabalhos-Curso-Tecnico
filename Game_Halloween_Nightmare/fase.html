@@ -1,0 +1,275 @@
+﻿<!doctype html>
+<html lang="pt-br">
+	<head>
+		<link rel="stylesheet" href="css/estiloFase.css" type="text/css">
+		<title>Halloween Nightmare</title>
+		<meta charset="utf-8">
+		<meta name="author" content="alessandroDrese, ivana, paulo, diogo">
+		<meta name="description" content="Trabalho Game Computacao Grafica">
+		
+		<script src="js/spritesheet.js"></script> 
+		<script src="js/animacao.js"></script> 
+		<script src="js/teclado.js"></script> 
+		<script src="js/personagem.js"></script>
+		<script src="js/fundo.js"></script>
+		<script src="js/zumbi.js"></script>
+		<script src="js/serraeletrica.js"></script>
+		<script src="js/ogro.js"></script>
+		<script src="js/colisor.js"></script>
+		<script src="js/bloco.js"></script>
+		<script src="js/municao.js"></script>
+		<script src="js/aranha.js"></script>
+		<script src="js/chefeum.js"></script>
+		<script src="js/status.js"></script>
+		
+		
+		<script language="JavaScript">  
+		function getParametro(p)  
+		{  
+		var str = new Array();  
+		loc = window.location.search.substr(1).split('&');  
+		for (i in loc)  
+		{  
+		var q = loc[i].split('=');  
+		str[q[0]] = q[1];  
+		}  
+		return str[p];  
+		}  
+</script>  
+	</head>
+	<body>
+		<section>
+			<img src="images/logo2.png" width="747" height="121">
+		</section>
+		
+		<section>
+			
+			<canvas id="canv" width="800" height="500">Infelizmente, seu navegador não suporta Canvas. Atualize-o!</canvas>
+			
+			<script>
+				var  x = getParametro("id"); 
+				var dificult = false;
+				if(x == 1)
+					dificult = true;
+			
+				var context = document.getElementById('canv').getContext('2d');
+				var teclado = new Teclado(document); 
+				
+				
+				
+				var animacao = new Animacao(context);
+				
+				
+				
+				var stat = new Status(context);
+				var imgPersonagem = new Image(); 
+				imgPersonagem.src = 'images/personagem.png'; 
+				var personagem = new Personagem(context, teclado, imgPersonagem, 100, 100, 0, colisor, animacao, stat);
+				personagem.x = 340; 
+				personagem.y = 200;
+				
+				
+				var f = new Image();
+				f.src = 'images/level.png';
+				var fundo = new Fundo(context, personagem, f);
+				fundo.x = -100;
+				fundo.y = -50;
+				
+				
+				
+				// add inimigos
+				var zumbis = [
+				new Zumbi(context, personagem, fundo, 90, 90, 250, 450, 3, 6, 0, true),
+				new Zumbi(context, personagem, fundo, 90, 90, 700, 350, 3, 6, 0, true),
+				new Zumbi(context, personagem, fundo, 90, 90, 310, 530, 3, 6, 0, false),
+				new Zumbi(context, personagem, fundo, 90, 90, 1150, 290, 3, 6, 0, false),
+				new Zumbi(context, personagem, fundo, 90, 90, 50, 900, 3, 6, 0, true),
+				new Zumbi(context, personagem, fundo, 90, 90, 120, 1105, 3, 6, 0, false),
+				new Zumbi(context, personagem, fundo, 90, 90, 520, 1105, 3, 6, 0, true),
+				new Zumbi(context, personagem, fundo, 90, 90, 1900, 690, 3, 6, 0, false),
+				new Zumbi(context, personagem, fundo, 90, 90, 3000, 490, 3, 6, 0, true),
+				new Zumbi(context, personagem, fundo, 90, 90, 3300, 530, 3, 6, 0, true),
+				new Zumbi(context, personagem, fundo, 90, 90, 3500, 630, 3, 6, 0, false),
+				];
+				
+				
+				var ogros = [
+				new Ogro(context, personagem,  fundo, 90, 90, 1020, 60, 4, 4, 1, dificult),
+				new Ogro(context, personagem,  fundo, 90, 90, 1720, 600, 4, 4, 1, dificult),
+				new Ogro(context, personagem,  fundo, 90, 90, 1720, 600, 4, 4, 1, dificult),
+				new Ogro(context, personagem,  fundo, 90, 90, 2670, 100, 4, 4, 1, dificult),
+				];
+				
+				
+				var aranhas = [
+				new Aranha(context, personagem,  fundo, 90, 90, 820, 160, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 620, 1100, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 700, 900, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 1020, 1100, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 1890, 1050, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 2820, 1260, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 3120, 1260, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 1600, 570, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 2870, 570, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 3070, 370, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 2970, 700, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 3570, 700, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 3470, 570, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 3570, 370, 4, 4, 1, dificult),
+				new Aranha(context, personagem,  fundo, 90, 90, 2530, 280, 4, 4, 1, dificult),
+				];
+				
+				
+				
+				
+				
+				// add obstaculos fase
+				var blocos = [
+				new Bloco(context, fundo, -180, 0, 1560, 40, 0),	//01
+				new Bloco(context, fundo, -170, 0, 40, 1340, 0),	//02
+				new Bloco(context, fundo, 420, 260, 50, 5, 1),		//03
+				new Bloco(context, fundo, 390, 383, 172, 3, 1),		//04
+				new Bloco(context, fundo, 580, 158, 175, 3, 1),		//05
+				new Bloco(context, fundo, 620, 490, 45, 345, 0),	//06
+				new Bloco(context, fundo, 620, 480, 195, 13, 0),	//07
+				new Bloco(context, fundo, 942, 480, 1348, 13, 0),	//08
+				new Bloco(context, fundo, -170, 1280, 3950, 15, 0),	//09
+				new Bloco(context, fundo, -55, 503,55, 10, 0),		//10
+				new Bloco(context, fundo, -130, 313, 125, 75, 0),	//11
+				new Bloco(context, fundo, -70, 142, 170, 80, 0),	//12
+				new Bloco(context, fundo, 27, 260, 170, 85, 0),		//13
+				new Bloco(context, fundo, 620, 823, 1475, 15, 0),	//14
+				new Bloco(context, fundo, 948, 833, 33, 228, 0),	//15
+				new Bloco(context, fundo, 530, 1050, 450, 18, 0),	//16
+				new Bloco(context, fundo, 152, 1050, 275, 15, 0),	//17
+				new Bloco(context, fundo, -150, 1050, 207, 15, 0),	//18
+				new Bloco(context, fundo, 2060, 260, 40, 580, 0),	//19
+				new Bloco(context, fundo, 2380, 480, 90, 13, 0),	//20
+				new Bloco(context, fundo, 2570, 480, 260, 13, 0),	//21
+				new Bloco(context, fundo, 1350, -103, 30, 112, 0),	//22
+				new Bloco(context, fundo, 2800, -103, 20, 117, 0),	//23
+				new Bloco(context, fundo, 1350, -100, 1480, 20, 0),	//24
+				new Bloco(context, fundo, 2800, 10, 970, 20, 0),	//25
+				new Bloco(context, fundo, 2800, 250, 970, 10, 0),	//26
+				new Bloco(context, fundo, 2060, 250, 453, 10, 0),	//27
+				new Bloco(context, fundo, 2800, 250, 40, 230, 0),	//28
+				new Bloco(context, fundo, 2475, 250, 40, 115, 0),	//29
+				new Bloco(context, fundo, 2615, 360, 10, 115, 0),	//30
+				new Bloco(context, fundo, 2475, 360, 333, 13, 0),	//31
+				new Bloco(context, fundo, 3730, -100, 40, 1420, 0),	//32
+				new Bloco(context, fundo, 1690, 190, 155, 70, 1),	//33
+				new Bloco(context, fundo, 800, 623, 610, 120, 0),	//34
+				new Bloco(context, fundo, 1130, 135, 170, 85, 0),	//35
+				new Bloco(context, fundo, 950, 260, 170, 85, 0),	//36
+				new Bloco(context, fundo, 2245, 30, 155, 30, 0),	//37
+				new Bloco(context, fundo, 2612, 30, 160, 30, 0),	//38
+				new Bloco(context, fundo, 1130, 953, 170, 85, 0),	//39
+				new Bloco(context, fundo, 1870, 943, 170, 85, 0),	//40
+				new Bloco(context, fundo, 1690, 378, 335, 70, 1),	//41
+				new Bloco(context, fundo, 1690, 530, 155, 70, 1),	//42
+				new Bloco(context, fundo, 1000, 500, 410, 120, 0),	//43
+				new Bloco(context, fundo, 1690, 730, 155, 70, 1),	//44
+				new Bloco(context, fundo, 2620, 260, 155, 70, 1),	//45
+				new Bloco(context, fundo, 3350, 145, 350, 85, 1),	//46
+				new Bloco(context, fundo, 1320, 873, 150, 85, 0),	//47
+				new Bloco(context, fundo, 200, 953, 170, 85, 0),	//48
+				new Bloco(context, fundo, 570, 1183, 190, 18, 0),	//49
+				new Bloco(context, fundo, 2060, 1070, 180, 18, 0),	//50
+				new Bloco(context, fundo, 2280, 1070, 820, 120, 0),	//51
+				new Bloco(context, fundo, 2630, 840, 470, 230, 0),	//52
+				new Bloco(context, fundo, 3220, 983, 255, 105, 0),	//53
+				new Bloco(context, fundo, 3520, 1173, 170, 85, 0),	//54
+				];
+				
+				animacao.novoSprite(fundo);
+				
+				animacao.novoSprite(personagem);
+				
+				var colisor = new Colisor();
+				colisor.novoSprite(personagem);
+				
+				this.teclado.disparou(ESPACO, function() {
+				personagem.atirar();
+				});
+				
+				
+				
+				for(var i in zumbis){
+					colisor.novoSprite(zumbis[i]);
+					animacao.novoSprite(zumbis[i]);
+				}
+				
+				for(var i in ogros){
+					colisor.novoSprite(ogros[i]);
+					animacao.novoSprite(ogros[i]);
+				}
+				
+				for(var i in aranhas){
+					colisor.novoSprite(aranhas[i]);
+					animacao.novoSprite(aranhas[i]);
+				}
+				
+				
+				for(var i in blocos){
+					animacao.novoSprite(blocos[i]);
+					colisor.novoSprite(blocos[i]);
+				}
+	  
+	  
+				// chefe
+				chefe = new ChefeUm(context, personagem,  fundo, 200, 200, 20, 660, 4, 4, 1);
+	  
+				animacao.novoSprite(stat);
+	  
+				animacao.novoProcessamento(colisor);
+				
+				iniciar();
+				
+				function iniciar() {
+					animacao.ligar();
+					
+					vc = setInterval(validaFase, 500);	
+				}
+				
+				var chefe;
+				var validaChefe = false;
+				function validaFase() {
+					if(personagem.status.vida <= 0) {
+						animacao.desligar();
+						var newLocation = window.location.href.split('/');
+						newLocation.pop();
+						
+						var newLink = 'game_over.html?id=0';
+						if(dificult)
+							newLink = 'game_over.html?id=1';
+						newLocation.push(newLink);
+						window.location = newLocation.join('/');
+					}
+					
+					if(!validaChefe){
+					v = personagem.status.monstros >= 18;
+					if(v){
+						animacao.novoSprite(chefe);
+						colisor.novoSprite(chefe);
+						validaChefe = true;
+					}
+					}
+					
+					if(validaChefe){
+						if(!chefe.visible){
+							var newLocation = window.location.href.split('/');
+							newLocation.pop();
+							newLocation.push('win.html');
+							window.location = newLocation.join('/');
+						}
+					}
+						
+					
+				}
+	 
+   </script>
+			
+			
+		</section>
+	</body>
+</html>

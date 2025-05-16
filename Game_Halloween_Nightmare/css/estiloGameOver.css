@@ -1,0 +1,28 @@
+body{
+	background-image: url(../images/game_over.png);
+	background-size:  100%;
+	background-repeat: no-repeat;
+	background-color: rgb(0,0,0);
+	
+}
+section{
+	text-align: center;
+	position: relative;
+	
+	top: 490px;
+}
+
+
+#tryAgain{
+	
+	width: 150px;
+	height: 30px;
+	cursor: pointer;
+}
+
+#botaoOptions{
+	
+	width: 100px;
+	height: 30px;
+}
+
