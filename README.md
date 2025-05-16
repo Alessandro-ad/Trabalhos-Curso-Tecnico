@@ -7,5 +7,8 @@ Trabalhos desenvolvidos durante o curso técnico.
 <br/><br/>**Jogabilidade:** é possível movimentar o personagem através das setas do teclado (← ↑ → ↓), e atirar a partir da tecla "espaço".
 
 <br/>
+![image](https://github.com/user-attachments/assets/64530eca-85e6-4164-9414-4f9fae65e380)
+
+
 
 
